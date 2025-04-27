@@ -1,0 +1,13 @@
+Hyena Habitat:
+Hy01; Kamari; birth date 2018-03-15; tan color; female; 70 pounds; from Friguia Park, Tunisia; arrived 2024-03-05
+Hy02; Tamu; birth date 2020-03-15; spotted color; male; 80 pounds; from Ngorongoro, Tanzania; arrived 2024-03-10
+
+Lion Habitat:
+Li01; Kovu; birth date 2021-06-15; golden color; male; 180 pounds; from Serengeti, Tanzania; arrived 2024-03-07
+Li02; Nia; birth date 2020-06-15; golden color; female; 150 pounds; from Masai Mara, Kenya; arrived 2024-03-12
+
+Tiger Habitat:
+Ti01; Zuri; birth date 2022-09-15; orange color; female; 120 pounds; from Sundarbans, India; arrived 2024-03-08
+
+Bear Habitat:
+Be01; Shumba; birth date 2019-12-15; brown color; male; 350 pounds; from Yellowstone, USA; arrived 2024-03-09
