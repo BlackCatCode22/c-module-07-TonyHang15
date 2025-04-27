@@ -2,12 +2,13 @@
 #include <fstream>
 #include <vector>
 #include <queue>
-#include <memory> // for smart pointers
+#include <memory> 
 #include "Animal.h"
 #include "Hyena.h"
 #include "Lion.h"
 #include "Tiger.h"
 #include "Bear.h"
+#include "Elephant.h"  
 #include "readNames.h"
 
 using namespace std;
@@ -17,6 +18,7 @@ int main() {
     vector<unique_ptr<Lion>> lions;
     vector<unique_ptr<Tiger>> tigers;
     vector<unique_ptr<Bear>> bears;
+    vector<unique_ptr<Elephant>> elephants; 
 
     queue<string> nameQueue;
     try {
@@ -33,8 +35,8 @@ int main() {
     }
 
     string line;
-    int hyenaCount = 0, lionCount = 0, tigerCount = 0, bearCount = 0;
-    string arrivalDate = "2025-04-25"; // or dynamically get today's date
+    int hyenaCount = 0, lionCount = 0, tigerCount = 0, bearCount = 0, elephantCount = 0;  // Counter for elephants
+    string arrivalDate = "2025-04-25"; 
 
     while (getline(inFile, line)) {
         // Parse info
@@ -69,6 +71,7 @@ int main() {
         size_t originStart = line.rfind("from");
         origin = line.substr(originStart + 5);
 
+        
         if (species.find("hyena") != string::npos) {
             auto hyena = make_unique<Hyena>();
             hyena->setAttributes(sex, color, weight, origin, age, season, arrivalDate);
@@ -97,12 +100,18 @@ int main() {
             nameQueue.pop();
             bear->generateID(++bearCount);
             bears.push_back(move(bear));
+        } else if (species.find("elephant") != string::npos) { 
+            auto elephant = make_unique<Elephant>();
+            elephant->setAttributes(sex, color, weight, origin, age, season, arrivalDate);
+            elephant->assignName(nameQueue.front());
+            nameQueue.pop();
+            elephant->generateID(++elephantCount);  
+            elephants.push_back(move(elephant));
         }
     }
 
     inFile.close();
 
-    // Write to output file
     ofstream outFile("zooPopulation.txt");
     if (!outFile.is_open()) {
         cerr << "Could not create zooPopulation.txt" << endl;
@@ -127,6 +136,11 @@ int main() {
     outFile << "\nBear Habitat:\n";
     for (const auto& b : bears) {
         b->printInfo(outFile);
+    }
+
+    outFile << "\nElephant Habitat:\n";  
+    for (const auto& e : elephants) { 
+        e->printInfo(outFile);
     }
 
     outFile.close();
